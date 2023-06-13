@@ -130,7 +130,7 @@ const Curso = () => {
                 <th>Data de Conclusão</th>
                 <th>Data de Expiração</th>
                 {/* <th className="curso-column">Curso</th> */}
-                <th>Modificar</th>
+                <th>Código</th>
               </tr>
             </thead>
             <tbody>
