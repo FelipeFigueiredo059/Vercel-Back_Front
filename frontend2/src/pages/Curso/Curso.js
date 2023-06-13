@@ -108,15 +108,17 @@ const Curso = () => {
               placeholder="Informações do Curso"
               onChange={(e) => setInfo(e.target.value)}
             />
-            <input
-              type="text"
+            <InputMask
+              mask="99/99/9999" // Defina a máscara de data
               placeholder="Data de Conclusão"
-              onChange={(e) => setConclusionDate(e.target.value)}
+              value={conclusiondate} // Utilize "value" em vez de "onChange" para definir o valor do campo
+              onChange={(e) => setConclusionDate(e.target.value)} // Atualize o estado ao modificar o campo
             />
-            <input
-              type="text"
+            <InputMask
+              mask="99/99/9999" // Defina a máscara de data
               placeholder="Data de Expiração"
-              onChange={(e) => setExpirationDate(e.target.value)}
+              value={expirationdate} // Utilize "value" em vez de "onChange" para definir o valor do campo
+              onChange={(e) => setExpirationDate(e.target.value)} // Atualize o estado ao modificar o campo
             />
             <button className="btn-adicionar">Adicionar</button>
           </form>

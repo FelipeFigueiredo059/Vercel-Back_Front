@@ -9,6 +9,7 @@ import {
   BsPersonVcard,
   BsFillPersonPlusFill,
 } from "react-icons/bs";
+import InputMask from "react-input-mask";
 
 const Register = () => {
   const navigateTo = useNavigate();
@@ -47,7 +48,7 @@ const Register = () => {
       .required("O email é obrigatório"),
     address: Yup.string().required("O endereço é obrigatório"),
     phonenumber: Yup.string().required("O telefone é obrigatório"),
-    birthday: Yup.date().required("A data de nascimennto é obrigatória"),
+    birthday: Yup.date().required("A data de nascimento é obrigatória"),
     admissiondate: Yup.date().required("A data de admissão é obrigatória"),
     asodate: Yup.date().required("A data de ASO é obrigatória"),
   });
@@ -98,54 +99,66 @@ const Register = () => {
           >
             <Form className="formContainer">
               <div className="left-card">
-                <Field
-                  id="inputCreatePost"
-                  name="name"
-                  placeholder="Nome completo"
-                />
+                <Field name="name" placeholder="Nome completo">
+                  {({ field }) => (
+                    <InputMask
+                      id="inputCreatePost"
+                      {...field}
+                      mask=""
+                      maskChar=""
+                    />
+                  )}
+                </Field>
                 <ErrorMessage name="name" component="span" />
 
-                <Field id="inputCreatePost" name="cpf" placeholder="CPF" />
+                <Field name="cpf" placeholder="CPF">
+                  {({ field }) => (
+                    <InputMask
+                      id="inputCreatePost"
+                      {...field}
+                      mask="999.999.999-99"
+                      type="text"
+                      maskChar=""
+                    />
+                  )}
+                </Field>
                 <ErrorMessage name="cpf" component="span" />
 
-                <Field id="inputCreatePost" name="email" placeholder="Email" />
+                <Field name="email" placeholder="Email" />
                 <ErrorMessage name="email" component="span" />
 
-                <Field
-                  id="inputCreatePost"
-                  name="address"
-                  placeholder="Endereço"
-                />
+                <Field name="address" placeholder="Endereço" />
                 <ErrorMessage name="address" component="span" />
               </div>
 
               <div className="right-card">
-                <Field
-                  id="inputCreatePost"
-                  name="phonenumber"
-                  placeholder="Telefone"
-                />
+                <Field name="phonenumber" placeholder="Telefone">
+                  {({ field }) => (
+                    <InputMask
+                      id="inputCreatePost"
+                      {...field}
+                      mask="(99) 99999-9999"
+                      maskChar=""
+                    />
+                  )}
+                </Field>
                 <ErrorMessage name="phonenumber" component="span" />
 
                 <Field
-                  id="inputCreatePost"
                   name="birthday"
                   placeholder="Data de nascimento"
+                  type="date"
                 />
                 <ErrorMessage name="birthday" component="span" />
 
                 <Field
-                  id="inputCreatePost"
                   name="admissiondate"
+                  type="date"
                   placeholder="Data de admissão"
                 />
                 <ErrorMessage name="admissiondate" component="span" />
 
-                <Field
-                  id="inputCreatePost"
-                  name="asodate"
-                  placeholder="Data de ASO"
-                />
+                <Field name="asodate" type="date" placeholder="Data de ASO" />
                 <ErrorMessage name="asodate" component="span" />
               </div>
               <div className="baixo">
