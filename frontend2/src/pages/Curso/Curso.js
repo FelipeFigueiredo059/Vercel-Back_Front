@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Curso.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import InputMask from "react-input-mask";
 
 const Curso = () => {
   const navigateTo = useNavigate();
@@ -94,27 +95,27 @@ const Curso = () => {
           <form onSubmit={enviarDados}>
             <input
               type="text"
-              placeholder="Insira o nome do funcionário"
+              placeholder="Nome do funcionário"
               onChange={(e) => setName(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Insira o código curso do funcionário"
+              placeholder="Código do Curso"
               onChange={(e) => setCurso(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Insira as inforamações do curso"
+              placeholder="Informações do Curso"
               onChange={(e) => setInfo(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Insira a data de conclusão do curso"
+              placeholder="Data de Conclusão"
               onChange={(e) => setConclusionDate(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Insira a data de expiração do curso"
+              placeholder="Data de Expiração"
               onChange={(e) => setExpirationDate(e.target.value)}
             />
             <button className="btn-adicionar">Adicionar</button>
