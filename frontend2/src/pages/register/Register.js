@@ -61,7 +61,7 @@ const Register = () => {
     }
 
     axios
-      .post("http://localhost:3005/employeeinfo", data, {
+      .post("https://vercel-backend-three.vercel.app/employeeinfo", data, {
         headers: {
           Authorization: "Bearer " + accessToken,
         },

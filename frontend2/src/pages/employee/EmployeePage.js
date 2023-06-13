@@ -18,7 +18,7 @@ function EmployeePage() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`http://localhost:3005/employeeinfo/byId/${id}`)
+        .get(`https://vercel-backend-three.vercel.app/employeeinfo/byId/${id}`)
         .then((response) => {
           setEmployeeObject(response.data);
         });
@@ -27,7 +27,9 @@ function EmployeePage() {
 
   const mostrarCursos = () => {
     axios
-      .get(`http://localhost:3005/funcionario?name=${employeeObject.name}`)
+      .get(
+        `https://vercel-backend-three.vercel.app/funcionario?name=${employeeObject.name}`
+      )
       .then((response) => {
         const cursosDoFuncionario = response.data.filter(
           (curso) => curso.name === employeeObject.name

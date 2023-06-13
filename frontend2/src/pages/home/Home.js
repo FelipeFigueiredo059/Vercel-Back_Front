@@ -29,12 +29,14 @@ function Home() {
 
   const [listOfEmployees, setListOfEmployees] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:3005/employeeinfo").then((response) => {
-      const sortedEmployees = response.data.sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
-      setListOfEmployees(sortedEmployees);
-    });
+    axios
+      .get("https://vercel-backend-three.vercel.app/employeeinfo")
+      .then((response) => {
+        const sortedEmployees = response.data.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        setListOfEmployees(sortedEmployees);
+      });
   }, []);
 
   return (

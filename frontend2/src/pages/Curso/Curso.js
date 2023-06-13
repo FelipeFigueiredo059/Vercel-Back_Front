@@ -27,7 +27,7 @@ const Curso = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3005/funcionario")
+      .get("https://vercel-backend-three.vercel.app/funcionario")
       .then((response) => setUsers(response.data))
       .catch((err) => console.log(err));
   }, []);
@@ -36,7 +36,7 @@ const Curso = () => {
     event.preventDefault();
     const id = users.length > 0 ? users[users.length - 1].id + 1 : 1;
     axios
-      .post("http://localhost:3005/funcionario", {
+      .post("https://vercel-backend-three.vercel.app/funcionario", {
         id: id,
         name: name,
         curso: curso,
