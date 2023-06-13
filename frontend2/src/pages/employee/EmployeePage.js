@@ -16,6 +16,14 @@ function EmployeePage() {
   };
 
   useEffect(() => {
+    const accessToken = sessionStorage.getItem("accessToken");
+
+    if (!accessToken) {
+      navigateTo("/");
+    }
+  }, [navigateTo]);
+
+  useEffect(() => {
     if (id) {
       axios
         .get(`https://vercel-backend-three.vercel.app/employeeinfo/byId/${id}`)
