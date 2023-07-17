@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./employeeCourses.css";
+import Header from "../Header/header";
 
 function EmployeeCourses() {
   const navigateTo = useNavigate();
   const { id } = useParams();
-  const [employeeObject, setEmployeeObject] = useState({});
-  const [cursos, setCursos] = useState([]);
+  const [courses, setCourses] = useState([]);
 
   const goToEmployees = () => {
     navigateTo("/employees");
@@ -24,10 +24,9 @@ function EmployeeCourses() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`https://vercel-backend-three.vercel.app/employeeinfo/byId/${id}`)
+        .get(`http://localhost:3005/employee/byId/${id}`)
         .then((response) => {
-          setEmployeeObject(response.data);
-          mostrarCursos(response.data.name);
+          showCourses(response.data.name);
         })
         .catch((error) => {
           console.log(error);
@@ -35,14 +34,14 @@ function EmployeeCourses() {
     }
   }, [id]);
 
-  const mostrarCursos = (name) => {
+  const showCourses = (name) => {
     axios
-      .get(`https://vercel-backend-three.vercel.app/funcionario?name=${name}`)
+      .get(`http://localhost:3005/course?name=${name}`)
       .then((response) => {
-        const cursosDoFuncionario = response.data.filter(
-          (curso) => curso.name === name
+        const employeeCourses = response.data.filter(
+          (course) => course.name === name
         );
-        setCursos(cursosDoFuncionario);
+        setCourses(employeeCourses);
       })
       .catch((error) => {
         console.log(error);
@@ -51,41 +50,42 @@ function EmployeeCourses() {
 
   return (
     <div>
-      <div className="main-tabel">
-        <div className="tabel-employees">
-          <div className="header" onClick={goToEmployees}>
-            <h1>
-              Sonda <br /> Engenharia
-            </h1>
+      <div className="main-table">
+        <div className="table-employees">
+          <div className="header">
+            <Header />
           </div>
           <h2>Cursos do Funcionário</h2>
           <table>
             <thead>
               <tr>
-                <th>Curso</th>
-                <th>Informações</th>
-                <th>Data de conclusão</th>
-                <th>Data de expiração</th>
+                <th>Cursos</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              {cursos.map((curso, key) => (
-                <tr key={key}>
-                  <td>
-                    <div className="name">{curso.curso}</div>
-                  </td>
-                  <td>
-                    <div className="info">{curso.info}</div>
-                  </td>
-                  <td>
-                    <div className="conclusiondate">{curso.conclusiondate}</div>
-                  </td>
-                  <td>
-                    <div className="expirationdate">{curso.expirationdate}</div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+  {courses.map((course, key) => (
+    <tr key={key}>
+      <td>
+        <div
+          key={key}
+          className="name"
+          onClick={() => navigateTo(`/curso/${course.id}`)}
+        >
+          {course.course}
+        </div>
+      </td>
+      <td>
+        {course.fileUrl ? (
+          <div className="status">Cadastro Completo</div>
+        ) : (
+          <div className="status">Pendente</div>
+        )}
+      </td>
+    </tr>
+  ))}
+</tbody>
+
           </table>
         </div>
       </div>

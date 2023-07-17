@@ -5,21 +5,18 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
-import { useState } from "react";
+
 
 import YupPassword from "yup-password";
 YupPassword(yup);
 
 function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigateTo = useNavigate();
 
-  const loginUser = (e) => {
-    e.preventDefault();
-    const data = { email: email, password: password };
+  const loginUser = (values) => {
+    const data = { email: values.email || "", password: values.password || "" };
     axios
-      .post("https://vercel-backend-three.vercel.app/auth/login", data)
+      .post("http://localhost:3005/auth/login", data)
       .then((response) => {
         if (response.data.error) {
           alert(response.data.error);
@@ -46,22 +43,22 @@ function LoginPage() {
       .required("A senha é obrigatória"),
   });
 
+  const initialValues = {
+    email: "",
+    password: ""
+  }
+
   return (
     <div className="main-login">
       <div className="left-login">
-        <h1>
-          Sonda <br />
-          Engenharia
-        </h1>
         <img src={capa} alt="equipe" className="img" />
+        <img src={logo} alt="logo" className="sonda" />
       </div>
-      <img src={logo} alt="logo" className="sonda" />
-
       <div className="right-login">
         <div className="card-login">
           <h1>Login</h1>
           <Formik
-            initialValues={{}}
+            initialValues={initialValues}
             onSubmit={loginUser}
             validationSchema={validationLogin}
           >
@@ -70,37 +67,30 @@ function LoginPage() {
                 <Field
                   name="email"
                   className="form-field"
-                  placeholder="Email"
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
+                  placeholder="Email"  
                 />
                 <ErrorMessage
                   component="span"
                   name="email"
                   className="form-error"
                 />
-                <Field
-                  type="password"
-                  name="password"
-                  className="form-field"
-                  placeholder="Senha"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                />
+                 <Field
+                 type="password"
+                 name="password"
+                 className="form-field"
+                 placeholder="Senha"
+               />
                 <ErrorMessage
                   component="span"
                   name="password"
                   className="form-error"
                 />
               </div>
-              <a href="/recuperarsenha" className="recuperar">
+              <a href="/recuperarsenha" className="recover">
                 Recuperar senha
               </a>
 
-              <button className="btn-login" onClick={loginUser}>
-                {" "}
+              <button type="submit" className="btn-login">
                 Login
               </button>
             </Form>

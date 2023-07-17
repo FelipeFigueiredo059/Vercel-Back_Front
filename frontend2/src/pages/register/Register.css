@@ -26,9 +26,16 @@
   font-size: 2vw;
   cursor: pointer;
 }
+.tam-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+  height: 100vh;
+}
 
 .container {
-  width: 65%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   padding: 3% 2%;
@@ -49,29 +56,13 @@
   text-align: center;
 }
 
-.left-card {
-  width: 50%;
-  margin: 0px 10px;
-}
-.right-card {
+.left-card, .right-card {
   width: 50%;
   margin: 0px 10px;
 }
 
-.left-card > input {
-  width: 25vw;
-  border: none;
-  border-radius: 10px;
-  margin-top: 8%;
-  padding: 3%;
-  background: #463026;
-  color: white;
-  font-size: 12pt;
-  box-shadow: 0px 10px 40px #020100;
-  outline: none;
-  box-sizing: border-box;
-}
 
+.left-card > input,
 .right-card > input {
   width: 25vw;
   border: none;
@@ -85,20 +76,21 @@
   outline: none;
   box-sizing: border-box;
 }
+
 .baixo {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin: 0px 15px;
+  width: 10vw;
 }
 .cadastrar {
-  padding: 10%;
+  height: 5vh;
+  width: 100vh;
   border: none;
   border-radius: 10px;
   outline: none;
   text-transform: uppercase;
   letter-spacing: 4px;
-  font-weight: 900;
   color: #381503;
   background: #f85605;
   cursor: pointer;
@@ -109,13 +101,58 @@
   box-shadow: 10px 10px 20px 15px #050505;
 }
 
+.logo {
+  margin-bottom: 150px;
+  cursor: pointer;
+}
 span {
   display: inline-block;
   color: red;
 }
+.sidebar {
+  width: 13vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .icons-sidebar {
-  padding: 6% 30%;
-  font-size: 110px;
+  width: 20vw;
   color: #f85605;
   cursor: pointer;
+}
+.icons-sidebar > svg {
+  font-size: 8rem;
+}
+.success-message {
+  display: center;
+  color: #00ff00;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message {
+  display: center;
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-container {
+  height: 1px; 
+  margin-top: 8px; 
+}
+
+.error-message {
+  color: #ff0000;
+  font-size: 14px;
+  text-align: center;
 }

@@ -2,6 +2,7 @@ import "./password.css";
 import { GiPadlock } from "react-icons/gi";
 import { useState } from "react";
 import axios from "axios";
+import logo from "./../../assets/images/logo.png";
 
 function Password() {
   const [email, setEmail] = useState("");
@@ -11,7 +12,7 @@ function Password() {
   const enviarEmail = async (e) => {
     e.preventDefault();
     try {
-      const url = `https://vercel-backend-three.vercel.app/api/password-reset`;
+      const url = `http://localhost:3005/api/password-reset`;
       const { data } = await axios.post(url, { email });
       setMsg(data.message);
       setError("");
@@ -29,19 +30,14 @@ function Password() {
 
   return (
     <div className="main-page">
-      <div className="header">
-        <h1>
-          Sonda <br></br>Engenharia
-        </h1>
-      </div>
-
+      <img src={logo} alt="logo" className="sonda" />
       <div className="center-box">
         <div className="img-left">
           <GiPadlock className="icon-left" />
         </div>
         <div className="card-password">
           <h1>Recuperar a Senha</h1>
-          <p>Insira o email para enviamos a sua senha!</p>
+          <p>Insira o email para recuperar a sua senha!</p>
           <form onSubmit={enviarEmail}>
             <input
               type="email"
